@@ -1,0 +1,22 @@
+@import "./colors"
+
+.app
+  height: 100vh
+  background-color: $black
+  color: white
+
+.container
+  padding: 0
+
+.no-gutters
+  margin-right: 0
+  margin-left: 0
+  > .col,
+  > [class*="col-"]
+    padding-right: 0
+    padding-left: 0
+
+.content
+  margin: auto
+  min-height: calc(100vh - 56px)
+
