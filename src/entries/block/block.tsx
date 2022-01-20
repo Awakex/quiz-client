@@ -4,8 +4,8 @@ import cn from "classnames";
 
 interface IProps {
     children: any;
-    lightningColor?: string;
     className?: string;
+    style?: object;
 }
 
 const Block = (props: IProps) => {
@@ -15,10 +15,7 @@ const Block = (props: IProps) => {
                 [styles.block]: true,
                 [props.className]: !!props.className,
             })}
-            style={{
-                border: `1px solid ${props.lightningColor}`,
-                boxShadow: `0 0 5px ${props.lightningColor}`,
-            }}
+            style={{...props.style}}
         >
             {props.children}
         </div>

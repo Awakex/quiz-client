@@ -36,6 +36,8 @@ export class UserStore {
         };
 
         this.isAuthenticated = true;
+
+        return this.user;
     };
 
     public registrationUser = (authDto: AuthDto) => {

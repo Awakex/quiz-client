@@ -11,13 +11,19 @@ export const App = observer(() => {
     const {userStore, websocketStore} = useStores();
 
     useEffect(() => {
-        userStore.loadUser();
+        let user = userStore.loadUser();
+        if (user) {
+            websocketStore.connect(user.id);
+        }
+
+        return () => {
+            websocketStore.socket?.disconnect();
+        };
     }, []);
 
     useEffect(() => {
-        let user = userStore.user;
-        if (user && !websocketStore.socket) {
-            websocketStore.connect(user.id);
+        if (userStore.user && !websocketStore.socket) {
+            websocketStore.connect(userStore.user.id);
         }
     }, [userStore.user]);
 
@@ -25,9 +31,11 @@ export const App = observer(() => {
         <div className="app">
             <Header />
             <UtilsWrapper />
+
             <div className="container content no-gutters">
                 <AppRoutes />
             </div>
+
             <ToastContainer position="bottom-left" />
         </div>
     );
