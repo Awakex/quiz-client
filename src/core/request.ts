@@ -5,7 +5,10 @@ export const Request = (() => {
     const source = CancelToken.source();
 
     const instance = axios.create({
-        baseURL: "https://enigmatic-hamlet-75905.herokuapp.com/",
+        baseURL:
+            process.env.NODE_ENV === "production"
+                ? "https://enigmatic-hamlet-75905.herokuapp.com/"
+                : "http://localhost:5000",
         timeout: 30000,
         cancelToken: source.token,
     });

@@ -1,5 +1,4 @@
 import React, {useEffect} from "react";
-import Header from "./entries/header/header";
 import {ToastContainer} from "react-toastify";
 import {observer} from "mobx-react-lite";
 import {useStores} from "./hooks/use-stores";
@@ -16,13 +15,8 @@ export const App = observer(() => {
 
     return (
         <div className="app">
-            <Header />
             <UtilsWrapper />
-
-            <div className="container content no-gutters">
-                <AppRoutes />
-            </div>
-
+            <AppRoutes />
             <ToastContainer position="bottom-left" />
         </div>
     );

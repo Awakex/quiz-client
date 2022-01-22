@@ -5,6 +5,8 @@ import {toast} from "react-toastify";
 import {ErrorCodes} from "../core/error-codes";
 import io, {Socket} from "socket.io-client";
 import {WEBSOCKET_URL} from "../config";
+import {IToken} from "../interfaces/IToken";
+import {IUser} from "../interfaces/IUser";
 
 export class UserStore {
     public user: IUser | null;
@@ -84,6 +86,7 @@ export class UserStore {
         if (this.isSocketConnected) {
             this.socket.disconnect();
         }
+        this.user = null;
         this.isAuthenticated = false;
     };
 
