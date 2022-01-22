@@ -5,14 +5,19 @@ import {useStores} from "../../hooks/use-stores";
 
 const HistoryBlock = () => {
     const [history, setHistory] = useState([]);
-    const {websocketStore} = useStores();
+    const {userStore} = useStores();
 
     useEffect(() => {
-        websocketStore.socket.emit("get:history");
-        websocketStore.socket.on("history", (history) => {
+        let socket = userStore.socket;
+        if (!socket) {
+            return;
+        }
+
+        socket.emit("get:history");
+        socket.on("history", (history) => {
             setHistory(history);
         });
-    }, [websocketStore.socket]);
+    }, [userStore.socket]);
 
     return <Block style={{boxShadow: `0 0 50px ${Colors.SKY}`}}>HISTORY</Block>;
 };

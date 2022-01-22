@@ -4,5 +4,4 @@ import {WebsocketStore} from "./websocket-store";
 
 export const rootStoreContext = createContext({
     userStore: new UserStore(),
-    websocketStore: new WebsocketStore(),
 });

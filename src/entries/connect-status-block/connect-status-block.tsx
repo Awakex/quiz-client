@@ -6,19 +6,22 @@ import {Colors} from "../../enums/colors";
 
 const ConnectStatusBlock = observer(() => {
     const [usersOnline, setUsersOnline] = useState(0);
-    const {websocketStore} = useStores();
+    const {userStore} = useStores();
 
     useEffect(() => {
-        if (websocketStore.socket) {
-            websocketStore.socket.on("update:usersOnline", (online) => {
+        let socket = userStore.socket;
+        if (socket) {
+            socket.on("update:usersOnline", (online) => {
                 setUsersOnline(online);
             });
         }
-    }, [websocketStore.socket]);
+    }, [userStore.socket]);
 
     return (
-        <Block style={{boxShadow: `0 0 20px ${websocketStore.isConnected ? Colors.GREEN : "red"}`}}>
-            {websocketStore.isConnected ? (
+        <Block
+            style={{boxShadow: `0 0 20px ${userStore.isSocketConnected ? Colors.GREEN : "red"}`}}
+        >
+            {userStore.isSocketConnected ? (
                 <p className={`text-center fw-bold m-0`} style={{color: Colors.GREEN}}>
                     Онлайн, {usersOnline} чел.
                 </p>

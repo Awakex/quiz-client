@@ -8,24 +8,11 @@ import AppRoutes from "./entries/app-routes/app-routes";
 import "./styles/app.sass";
 
 export const App = observer(() => {
-    const {userStore, websocketStore} = useStores();
+    const {userStore} = useStores();
 
     useEffect(() => {
-        let user = userStore.loadUser();
-        if (user) {
-            websocketStore.connect(user.id);
-        }
-
-        return () => {
-            websocketStore.socket?.disconnect();
-        };
+        userStore.loadUser();
     }, []);
-
-    useEffect(() => {
-        if (userStore.user && !websocketStore.socket) {
-            websocketStore.connect(userStore.user.id);
-        }
-    }, [userStore.user]);
 
     return (
         <div className="app">
