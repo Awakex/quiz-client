@@ -5,7 +5,7 @@ export const Request = (() => {
     const source = CancelToken.source();
 
     const instance = axios.create({
-        baseURL: "https://quiz-app-react-app.herokuapp.com/",
+        baseURL: "https://enigmatic-hamlet-75905.herokuapp.com/",
         timeout: 30000,
         cancelToken: source.token,
     });
