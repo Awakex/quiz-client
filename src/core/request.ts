@@ -1,23 +1,26 @@
-import axios from "axios"
+import axios from "axios";
 
 export const Request = (() => {
-    const CancelToken = axios.CancelToken
-    const source = CancelToken.source()
+    const CancelToken = axios.CancelToken;
+    const source = CancelToken.source();
 
     const instance = axios.create({
-        baseURL: "http://localhost:5000",
+        baseURL: "https://quiz-app-react-app.herokuapp.com/",
         timeout: 30000,
-        cancelToken: source.token
-    })
+        cancelToken: source.token,
+    });
 
-    instance.interceptors.request.use(config => {
-        let token = 'asd'
-        config.headers.Authorization = `Baerer ${token}`
-        config.headers.Accept = "application/json";
-        return config
-    }, error => {
-        return Promise.reject()
-    })
+    instance.interceptors.request.use(
+        (config) => {
+            let token = localStorage.getItem("token");
+            config.headers.Authorization = `Baerer ${token}`;
+            config.headers.Accept = "application/json";
+            return config;
+        },
+        (error) => {
+            return Promise.reject();
+        },
+    );
 
     instance.interceptors.response.use(
         (response) => {
@@ -32,5 +35,5 @@ export const Request = (() => {
         value: source.cancel,
     });
 
-    return instance
-})()
+    return instance;
+})();
