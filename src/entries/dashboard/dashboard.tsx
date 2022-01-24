@@ -5,8 +5,7 @@ import HistoryBlock from "../history-block/history-block";
 
 const Dashboard = () => {
     return (
-        <div>
-            <h2>Dashboard loaded</h2>
+        <div style={{marginTop: 20}}>
             <Row>
                 <Col lg={10}>
                     <HistoryBlock />

@@ -17,6 +17,8 @@ const HistoryBlock = () => {
         socket.on("history", (history) => {
             setHistory(history);
         });
+
+        console.log(history);
     }, [userStore.socket]);
 
     return <Block style={{boxShadow: `0 0 50px ${Colors.SKY}`}}>HISTORY</Block>;

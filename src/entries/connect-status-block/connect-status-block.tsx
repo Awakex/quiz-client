@@ -19,7 +19,7 @@ const ConnectStatusBlock = observer(() => {
 
     return (
         <Block
-            style={{boxShadow: `0 0 20px ${userStore.isSocketConnected ? Colors.GREEN : "red"}`}}
+            style={{boxShadow: `0 0 40px ${userStore.isSocketConnected ? Colors.GREEN : "red"}`}}
         >
             {userStore.isSocketConnected ? (
                 <p className={`text-center fw-bold m-0`} style={{color: Colors.GREEN}}>

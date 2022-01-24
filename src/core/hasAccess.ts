@@ -8,6 +8,4 @@ export const hasAccess = (userRoles: Roles[], rolesForRoute) => {
     return userRoles.some((role) => {
         return rolesForRoute.includes(role);
     });
-
-    return false;
 };

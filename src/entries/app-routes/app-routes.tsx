@@ -5,6 +5,7 @@ import {PrivatePages, PUBLIC_ROUTES, PublicPages} from "../../routes";
 import {observer} from "mobx-react-lite";
 import Header from "../header/header";
 import {hasAccess} from "../../core/hasAccess";
+import Dashboard from "../dashboard/dashboard";
 
 const AppRoutes = observer(() => {
     const {userStore} = useStores();
@@ -12,6 +13,7 @@ const AppRoutes = observer(() => {
         <BrowserRouter>
             <Header />
             <div className="container content no-gutters">
+                <Dashboard />
                 <Routes>
                     {userStore.isAuthenticated ? (
                         <>
